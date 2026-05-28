@@ -3,196 +3,111 @@ import { DownloadMediaBody } from "@workspace/api-zod";
 
 const router = Router();
 
-const BROWSER_HEADERS = {
-  "User-Agent":
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-  Accept:
-    "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-  "Accept-Language": "en-US,en;q=0.9",
-  "Accept-Encoding": "gzip, deflate, br",
-  "Cache-Control": "no-cache",
-  Pragma: "no-cache",
-  "Sec-Fetch-Dest": "document",
-  "Sec-Fetch-Mode": "navigate",
-  "Sec-Fetch-Site": "none",
-  Connection: "keep-alive",
+const API_KEY = process.env.VTECH_API_KEY || "";
+const API_BASE = "https://api.vtech.biz.id/api/download";
+
+const ENDPOINTS: Record<string, string> = {
+  tiktok: "/tiktok",
+  tiktokslide: "/tiktokslide",
+  instagram: "/igdowloader",
+  youtube: "/ytdlv2",
+  facebook: "/fbdown",
+  pinterest: "/pinterest",
+  threads: "/threads",
+  capcut: "/capcut",
+  cocofun: "/cocofun",
+  snackvideo: "/snackvideo",
+  spotify: "/spotify",
+  gdrive: "/gdrive",
 };
 
-function extractShortcode(url: string): string | null {
-  const patterns = [
-    /instagram\.com\/p\/([A-Za-z0-9_-]+)/,
-    /instagram\.com\/reel\/([A-Za-z0-9_-]+)/,
-    /instagram\.com\/reels\/([A-Za-z0-9_-]+)/,
-    /instagram\.com\/tv\/([A-Za-z0-9_-]+)/,
-  ];
-  for (const pattern of patterns) {
-    const match = url.match(pattern);
-    if (match) return match[1];
-  }
-  return null;
-}
-
-function extractMetaContent(html: string, property: string): string | null {
-  const patterns = [
-    new RegExp(`<meta[^>]+property=["']${property}["'][^>]+content=["']([^"']+)["']`, "i"),
-    new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]+property=["']${property}["']`, "i"),
-  ];
-  for (const pattern of patterns) {
-    const match = html.match(pattern);
-    if (match?.[1]) return match[1];
-  }
-  return null;
-}
-
-function extractJsonLd(html: string): Record<string, unknown> | null {
-  const match = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/i);
-  if (!match) return null;
+function detectPlatform(url: string): string | null {
   try {
-    return JSON.parse(match[1]);
+    const h = new URL(url).hostname.replace("www.", "");
+    if (h.includes("tiktok.com")) return "tiktok";
+    if (h.includes("instagram.com")) return "instagram";
+    if (h.includes("youtube.com") || h.includes("youtu.be")) return "youtube";
+    if (h.includes("facebook.com") || h.includes("fb.watch")) return "facebook";
+    if (h.includes("pinterest.com") || h.includes("pin.it")) return "pinterest";
+    if (h.includes("threads.net")) return "threads";
+    if (h.includes("capcut.com")) return "capcut";
+    if (h.includes("icocofun.com")) return "cocofun";
+    if (h.includes("snackvideo.com")) return "snackvideo";
+    if (h.includes("spotify.com")) return "spotify";
+    if (h.includes("drive.google.com")) return "gdrive";
+    return null;
   } catch {
     return null;
   }
 }
 
-function extractAllVideos(html: string): string[] {
-  const urls: string[] = [];
-  const patterns = [
-    /"video_url":"([^"]+)"/g,
-    /"contentUrl":"([^"]+)"/g,
-    /property="og:video"[^>]+content="([^"]+)"/g,
-    /content="([^"]+)"[^>]+property="og:video"/g,
-  ];
-  for (const pattern of patterns) {
-    let m: RegExpExecArray | null;
-    while ((m = pattern.exec(html)) !== null) {
-      const url = m[1].replace(/\\u0026/g, "&").replace(/\\\//g, "/");
-      if (url.startsWith("http") && !urls.includes(url)) {
-        urls.push(url);
-      }
-    }
+async function fetchAPI(endpoint: string, url: string): Promise<unknown> {
+  const apiUrl = `${API_BASE}${endpoint}?apikey=${API_KEY}&url=${encodeURIComponent(url)}`;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 20000);
+  try {
+    const response = await fetch(apiUrl, { signal: controller.signal });
+    clearTimeout(timer);
+    if (!response.ok) throw new Error(`Upstream API error ${response.status}`);
+    return response.json();
+  } catch (err) {
+    clearTimeout(timer);
+    if ((err as Error).name === "AbortError") throw new Error("Request timed out");
+    throw err;
   }
-  return urls;
 }
 
 router.post("/download", async (req, res) => {
   const parsed = DownloadMediaBody.safeParse(req.body);
   if (!parsed.success) {
-    res.status(400).json({ error: "URL Instagram tidak valid" });
+    res.status(400).json({ success: false, error: "URL tidak valid" });
     return;
   }
 
   const { url } = parsed.data;
+  const platform = detectPlatform(url.trim());
 
-  if (!url.includes("instagram.com")) {
-    res.status(400).json({ error: "Harap masukkan URL Instagram yang valid" });
+  if (!platform) {
+    res
+      .status(400)
+      .json({ success: false, error: "Platform tidak didukung atau URL tidak dikenali" });
     return;
   }
 
-  const shortcode = extractShortcode(url);
-  if (!shortcode) {
-    res.status(400).json({
-      error: "Format URL tidak dikenali. Gunakan link post, reel, atau video Instagram.",
-    });
+  const endpoint = ENDPOINTS[platform];
+  if (!endpoint) {
+    res.status(400).json({ success: false, error: "Platform endpoint tidak dikonfigurasi" });
     return;
   }
 
   try {
-    const cleanUrl = `https://www.instagram.com/p/${shortcode}/`;
-    const response = await fetch(cleanUrl, {
-      headers: BROWSER_HEADERS,
-      redirect: "follow",
-    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let data = (await fetchAPI(endpoint, url.trim())) as any;
 
-    if (!response.ok) {
-      req.log.warn({ status: response.status, shortcode }, "Instagram fetch failed");
-      res.status(400).json({
-        error: "Gagal mengambil data dari Instagram. Pastikan postingan bersifat publik.",
-      });
-      return;
-    }
-
-    const html = await response.text();
-
-    // Extract media info from meta tags
-    const ogVideo = extractMetaContent(html, "og:video");
-    const ogVideoSecure = extractMetaContent(html, "og:video:secure_url");
-    const ogImage = extractMetaContent(html, "og:image");
-    const ogTitle = extractMetaContent(html, "og:title");
-    const ogDescription = extractMetaContent(html, "og:description");
-
-    // Also try JSON-LD
-    const jsonLd = extractJsonLd(html);
-
-    // Extract all video URLs from page source
-    const videoUrls = extractAllVideos(html);
-
-    const media: Array<{ url: string; type: "video" | "image"; thumbnail: string | null }> = [];
-
-    // Add videos first
-    const primaryVideo = ogVideoSecure || ogVideo || videoUrls[0];
-    if (primaryVideo) {
-      media.push({
-        url: primaryVideo,
-        type: "video",
-        thumbnail: ogImage || null,
-      });
-    }
-
-    // Add additional videos if any
-    for (const vUrl of videoUrls) {
-      if (vUrl !== primaryVideo && media.length < 10) {
-        media.push({ url: vUrl, type: "video", thumbnail: null });
+    // TikTok: auto-detect slide/photo mode
+    if (platform === "tiktok") {
+      const r = data?.result;
+      const hasNoVideo = !r?.video || r.video.length === 0;
+      const hasImages = r?.images && r.images.length > 0;
+      const isPhotoUrl = url.includes("/photo/");
+      if (isPhotoUrl || (hasNoVideo && hasImages)) {
+        try {
+          const slideData = (await fetchAPI(ENDPOINTS.tiktokslide, url.trim())) as any;
+          if (slideData?.result?.images?.length) {
+            data = { ...slideData, _slideMode: true };
+          }
+        } catch {
+          /* keep original */
+        }
       }
     }
 
-    // Add image if no video found, or if it looks like an image post
-    if (media.length === 0 && ogImage) {
-      media.push({ url: ogImage, type: "image", thumbnail: null });
-    }
-
-    if (media.length === 0) {
-      res.status(400).json({
-        error:
-          "Tidak dapat mengekstrak media. Pastikan postingan publik dan bukan Story. Instagram mungkin memblokir akses sementara — coba lagi nanti.",
-      });
-      return;
-    }
-
-    // Extract username and caption
-    let username: string | null = null;
-    let caption: string | null = null;
-
-    if (ogTitle) {
-      const userMatch = ogTitle.match(/^([^:]+):/);
-      if (userMatch) username = userMatch[1].trim().replace(/^@/, "");
-    }
-
-    if (jsonLd && typeof jsonLd === "object") {
-      const ld = jsonLd as Record<string, unknown>;
-      if (typeof ld.author === "object" && ld.author !== null) {
-        const author = ld.author as Record<string, unknown>;
-        if (typeof author.name === "string") username = author.name;
-      }
-      if (typeof ld.caption === "string") caption = ld.caption;
-    }
-
-    if (!caption && ogDescription) {
-      caption = ogDescription.replace(/ on Instagram.*$/, "").trim() || null;
-    }
-
-    req.log.info({ shortcode, mediaCount: media.length }, "Media extracted");
-
-    res.json({
-      success: true,
-      media,
-      caption,
-      username,
-    });
+    req.log.info({ platform, url: url.trim() }, "Media fetched successfully");
+    return res.json({ success: true, platform, data });
   } catch (err) {
-    req.log.error({ err, shortcode }, "Error fetching Instagram media");
-    res.status(500).json({
-      error: "Terjadi kesalahan server. Coba lagi beberapa saat lagi.",
-    });
+    req.log.error({ err, platform }, "Error fetching media");
+    const message = (err as Error).message || "Failed to fetch media";
+    return res.status(502).json({ success: false, error: message });
   }
 });
 
