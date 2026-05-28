@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "kmVgNmG5Rgxc8qEmKdd4S"
+uri = "file://nixig_downloader_fixed.zip"
+type = "unspecified"
+title = "Nix Ig Downloader — Kode yang Sudah Diperbaiki"
