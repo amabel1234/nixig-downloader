@@ -101,13 +101,13 @@
 
     <div class="sidebar-divider"></div>
     <div class="sidebar-section-label">LAINNYA</div>
-    <button class="sidebar-item" onclick="window.open('https://t.me/nixcooll','_blank')">
-      <div class="sidebar-item-icon" style="background:linear-gradient(135deg,#229ED9,#1A8BC2)">
+    <button class="sidebar-item sidebar-item-glow" onclick="window.open('https://t.me/nixsukakamu','_blank')">
+      <div class="sidebar-item-icon" style="background:linear-gradient(135deg,#229ED9,#0088cc)">
         <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
       </div>
       <div>
-        <div class="sidebar-item-name">Community</div>
-        <div class="sidebar-item-desc">Gabung di Telegram</div>
+        <div class="sidebar-item-name">💬 Community <span class="sidebar-badge">JOIN</span></div>
+        <div class="sidebar-item-desc">@nixsukakamu · Telegram</div>
       </div>
     </button>
     <button class="sidebar-item" onclick="alert('Developer: Nixx
@@ -856,6 +856,33 @@ Contact: t.me/nixcooll')">
 @media(min-width:900px){
   .sidebar-overlay{display:none}
 }
+/* Badge */
+.sidebar-badge{display:inline-block;font-size:.55rem;font-weight:800;letter-spacing:.05em;background:linear-gradient(135deg,#229ED9,#0088cc);color:#fff;padding:2px 6px;border-radius:20px;margin-left:5px;vertical-align:middle}
+/* Glow item */
+.sidebar-item-glow{position:relative}
+.sidebar-item-glow::before{content:'';position:absolute;inset:0;border-radius:12px;background:linear-gradient(135deg,rgba(34,158,217,.12),rgba(0,136,204,.08));opacity:0;transition:opacity .2s}
+.sidebar-item-glow:hover::before{opacity:1}
+/* Dev Modal */
+.dev-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+.dev-modal-overlay.open{opacity:1;pointer-events:all}
+.dev-modal{background:#13131f;border:1px solid rgba(255,255,255,.1);border-radius:20px;width:100%;max-width:340px;overflow:hidden;transform:translateY(20px) scale(.97);transition:transform .3s}
+.dev-modal-overlay.open .dev-modal{transform:translateY(0) scale(1)}
+.dev-modal-header{display:flex;align-items:center;gap:14px;padding:20px}
+.dev-modal-avatar{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,#AF52DE,#5856D6);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.dev-modal-name{font-weight:800;font-size:1rem;color:#fff}
+.dev-modal-role{font-size:.72rem;color:rgba(255,255,255,.45);margin-top:2px}
+.dev-modal-divider{height:1px;background:rgba(255,255,255,.07)}
+.dev-modal-body{padding:16px 20px;display:flex;flex-direction:column;gap:12px}
+.dev-modal-row{display:flex;align-items:flex-start;gap:12px}
+.dev-modal-icon{font-size:1.1rem;margin-top:1px}
+.dev-modal-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:2px}
+.dev-modal-val{font-size:.85rem;color:rgba(255,255,255,.85);font-weight:500}
+.dev-modal-footer{padding:14px 20px 20px;display:flex;gap:8px}
+.dev-modal-tg{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#229ED9,#0088cc);color:#fff;border:none;border-radius:12px;padding:12px;font-size:.85rem;font-weight:700;cursor:pointer;transition:opacity .2s}
+.dev-modal-tg:hover{opacity:.85}
+.dev-modal-tg svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dev-modal-close{padding:12px 16px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:none;border-radius:12px;font-size:.85rem;cursor:pointer;transition:background .2s}
+.dev-modal-close:hover{background:rgba(255,255,255,.13)}
 </style>
 
 <script>
@@ -870,6 +897,18 @@ Contact: t.me/nixcooll')">
   close.addEventListener('click', shut);
   overlay.addEventListener('click', shut);
   document.addEventListener('keydown', e => { if(e.key==='Escape') shut(); });
+})();
+</script>
+<script>
+(function(){
+  const btn = document.getElementById('devInfoBtn');
+  const overlay = document.getElementById('devModalOverlay');
+  const closeBtn = document.getElementById('devModalClose');
+  if(!btn||!overlay) return;
+  btn.addEventListener('click', () => overlay.classList.add('open'));
+  closeBtn.addEventListener('click', () => overlay.classList.remove('open'));
+  overlay.addEventListener('click', e => { if(e.target===overlay) overlay.classList.remove('open'); });
+  document.addEventListener('keydown', e => { if(e.key==='Escape') overlay.classList.remove('open'); });
 })();
 </script>
 </body>
