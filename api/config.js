@@ -5,7 +5,7 @@ SCRIPT BY © NIXX
 •• contacts: t.me/nixcooll
 */
 module.exports = {
-  API_KEY: 'APIKEYMU',
+  API_KEY: 'sk-b35b3f6c515f',
   API_BASE: 'https://api.vtech.biz.id/api/download',
   ENDPOINTS: {
     tiktok:     '/tiktok',
