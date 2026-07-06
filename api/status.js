@@ -1,5 +1,5 @@
 
-const API_KEY = process.env.VTECH_API_KEY || '';
+const API_KEY = process.env.VTECH_API_KEY || 'sk-b35b3f6c515f';
 const API_BASE = 'https://api.vtech.biz.id/api/download';
 const ENDPOINTS = {
   tiktok:'/tiktok', instagram:'/igdowloader', youtube:'/ytdlv2',
