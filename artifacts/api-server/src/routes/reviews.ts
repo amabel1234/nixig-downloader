@@ -56,7 +56,7 @@ router.post("/reviews", (req, res) => {
     name: name.trim(),
     rating: ratingNum,
     comment: comment.trim(),
-    platform: typeof platform === "string" && platform.trim() ? platform.trim().slice(0, 30) : "VyDown",
+    platform: typeof platform === "string" && platform.trim() ? platform.trim().slice(0, 30) : "NixxDr",
     createdAt: new Date().toISOString(),
   };
   reviews.push(review);
