@@ -1,13 +1,44 @@
 {
-  "version": 2,
+  "installCommand": "echo ok",
+  "buildCommand": "echo ok",
+  "outputDirectory": ".",
+  "functions": {
+    "api/download.js": {
+      "memory": 512,
+      "maxDuration": 30
+    },
+    "api/reviews.js": {
+      "memory": 128,
+      "maxDuration": 10
+    },
+    "api/status.js": {
+      "memory": 256,
+      "maxDuration": 30
+    }
+  },
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "source": "/api/download",
+      "destination": "/api/download"
     },
     {
-      "source": "/((?!api/).*)",
-      "destination": "/index.html"
+      "source": "/api/reviews",
+      "destination": "/api/reviews"
+    },
+    {
+      "source": "/api/status",
+      "destination": "/api/status"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
     }
   ]
 }
