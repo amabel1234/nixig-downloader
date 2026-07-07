@@ -3,19 +3,50 @@
   "buildCommand": "echo ok",
   "outputDirectory": ".",
   "functions": {
-    "api/download.js": { "maxDuration": 30 },
-    "api/reviews.js":  { "maxDuration": 15 },
-    "api/status.js":   { "maxDuration": 30 },
-    "api/admin.js":    { "maxDuration": 15 }
+    "api/download.js": {
+      "maxDuration": 30
+    },
+    "api/reviews.js": {
+      "maxDuration": 15
+    },
+    "api/status.js": {
+      "maxDuration": 30
+    },
+    "api/admin.js": {
+      "maxDuration": 15
+    }
   },
   "rewrites": [
-    { "source": "/api/download", "destination": "/api/download" },
-    { "source": "/api/reviews",  "destination": "/api/reviews"  },
-    { "source": "/api/status",   "destination": "/api/status"   },
-    { "source": "/api/admin",    "destination": "/api/admin"    },
-    { "source": "/admin",        "destination": "/admin.html"   }
+    {
+      "source": "/api/download",
+      "destination": "/api/download"
+    },
+    {
+      "source": "/api/reviews",
+      "destination": "/api/reviews"
+    },
+    {
+      "source": "/api/status",
+      "destination": "/api/status"
+    },
+    {
+      "source": "/api/admin",
+      "destination": "/api/admin"
+    },
+    {
+      "source": "/admin",
+      "destination": "/admin.html"
+    }
   ],
   "headers": [
-    { "source": "/api/(.*)", "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }] }
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
   ]
 }
