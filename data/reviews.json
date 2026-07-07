@@ -38,5 +38,14 @@
     "comment": "Download Spotify juga bisa? Gila! Ini tool lengkap banget. Recommended 100%.",
     "platform": "Spotify",
     "createdAt": "2025-07-06T07:45:00Z"
+  },
+  {
+    "id": 6,
+    "name": "Uji Simpan 720",
+    "email": "lolipopajakok12@gmail.com",
+    "rating": 5,
+    "comment": "Test simpan permanen & notif email!",
+    "platform": "Instagram",
+    "createdAt": "2026-07-07T03:08:41.333Z"
   }
 ]
