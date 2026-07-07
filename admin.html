@@ -9,7 +9,7 @@
     :root{--bg:#08080F;--surface:rgba(255,255,255,.04);--border:rgba(255,255,255,.07);--text:rgba(255,255,255,.85);--muted:rgba(255,255,255,.4);--accent:#007AFF;--danger:#FF3B30;--success:#34C759;--warn:#FF9500}
     body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;display:flex;flex-direction:column}
 
-    /* ── LOGIN ── */
+    /* LOGIN */
     #loginWrap{flex:1;display:flex;align-items:center;justify-content:center;padding:24px}
     .login-card{width:100%;max-width:380px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:20px;padding:36px 32px}
     .login-logo{display:flex;align-items:center;gap:10px;margin-bottom:28px}
@@ -27,7 +27,7 @@
     .login-btn:hover{opacity:.85}
     .login-error{margin-top:12px;color:#FF6B61;font-size:13px;font-weight:600;text-align:center;display:none}
 
-    /* ── ADMIN PANEL ── */
+    /* ADMIN WRAP */
     #adminWrap{display:none;flex-direction:column;min-height:100vh}
     .admin-header{display:flex;align-items:center;gap:16px;padding:18px 28px;background:rgba(8,8,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
     .admin-header-logo{display:flex;align-items:center;gap:10px;flex:1}
@@ -37,16 +37,33 @@
     .admin-header-badge{background:rgba(255,59,48,.15);border:1px solid rgba(255,59,48,.25);color:#FF6B61;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:20px}
     .admin-logout-btn{display:flex;align-items:center;gap:7px;padding:8px 16px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .15s}
     .admin-logout-btn:hover{background:rgba(255,59,48,.12);border-color:rgba(255,59,48,.2);color:#FF6B61}
+    .admin-main{flex:1;padding:28px 28px;max-width:1200px;margin:0 auto;width:100%}
 
-    .admin-main{flex:1;padding:32px 28px;max-width:1200px;margin:0 auto;width:100%}
+    /* TABS */
+    .tabs{display:flex;gap:4px;margin-bottom:28px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:4px;width:fit-content}
+    .tab-btn{display:flex;align-items:center;gap:8px;padding:9px 18px;border-radius:9px;border:none;background:transparent;color:var(--muted);font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .15s}
+    .tab-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .tab-btn.active{background:#fff;color:#000}
+    .tab-pane{display:none}
+    .tab-pane.active{display:block}
 
-    /* Stats bar */
+    /* STATS */
     .stats-row{display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap}
     .stat-card{flex:1;min-width:120px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px}
     .stat-card-num{font-size:28px;font-weight:800;margin-bottom:4px}
     .stat-card-lbl{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
 
-    /* Search + filter */
+    /* PLATFORM BARS */
+    .plat-bars{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px}
+    .plat-bars-title{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px}
+    .plat-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .plat-bar-row:last-child{margin-bottom:0}
+    .plat-bar-name{font-size:13px;font-weight:700;width:80px;flex-shrink:0;text-transform:capitalize}
+    .plat-bar-track{flex:1;height:8px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden}
+    .plat-bar-fill{height:100%;border-radius:4px;background:var(--accent);transition:width .4s ease}
+    .plat-bar-count{font-size:12px;color:var(--muted);width:32px;text-align:right;flex-shrink:0}
+
+    /* TOOLBAR */
     .toolbar{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
     .search-input{flex:1;min-width:200px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:#fff;font-size:14px;font-family:inherit;outline:none}
     .search-input:focus{border-color:rgba(0,122,255,.4)}
@@ -56,7 +73,7 @@
     .refresh-btn:hover{background:rgba(0,122,255,.2)}
     .refresh-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-    /* Table */
+    /* TABLE */
     .table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;overflow-x:auto}
     table{width:100%;border-collapse:collapse}
     thead tr{background:rgba(255,255,255,.03);border-bottom:1px solid var(--border)}
@@ -64,31 +81,31 @@
     tbody tr{border-bottom:1px solid rgba(255,255,255,.04);transition:background .1s}
     tbody tr:last-child{border-bottom:none}
     tbody tr:hover{background:rgba(255,255,255,.03)}
-    td{padding:14px 16px;font-size:13px;vertical-align:top}
+    td{padding:13px 16px;font-size:13px;vertical-align:middle}
     .col-id{color:var(--muted);font-weight:700;font-size:12px}
     .col-name{font-weight:700;color:#fff}
-    .col-email{color:var(--accent);font-size:12px}
-    .col-email a{color:inherit;text-decoration:none}
+    .col-email a{color:var(--accent);font-size:12px;text-decoration:none}
     .col-email a:hover{text-decoration:underline}
-    .col-rating{white-space:nowrap}
-    .col-platform .plat-badge{display:inline-flex;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1)}
-    .col-comment{max-width:280px;color:var(--muted);line-height:1.5}
+    .col-comment{max-width:280px;color:var(--muted);line-height:1.5;font-size:13px}
     .col-date{color:var(--muted);font-size:12px;white-space:nowrap}
-    .del-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:rgba(255,59,48,.1);border:1px solid rgba(255,59,48,.2);color:#FF6B61;cursor:pointer;transition:all .15s;flex-shrink:0}
+    .badge{display:inline-flex;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;text-transform:capitalize}
+    .badge-plat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:var(--text)}
+    .badge-ok{background:rgba(52,199,89,.12);border:1px solid rgba(52,199,89,.2);color:#34C759}
+    .badge-fail{background:rgba(255,59,48,.12);border:1px solid rgba(255,59,48,.2);color:#FF6B61}
+    .col-host{color:var(--muted);font-size:12px}
+    .del-btn{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:rgba(255,59,48,.1);border:1px solid rgba(255,59,48,.2);color:#FF6B61;cursor:pointer;transition:all .15s}
     .del-btn:hover{background:rgba(255,59,48,.25);border-color:rgba(255,59,48,.4)}
-    .del-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
-
-    /* Empty + loading */
+    .del-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
     .table-empty{padding:60px;text-align:center;color:var(--muted);font-size:14px}
-    .spinner{width:28px;height:28px;border:3px solid rgba(255,255,255,.1);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
+    .spinner{width:26px;height:26px;border:3px solid rgba(255,255,255,.1);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* Toast */
-    #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:12px 20px;border-radius:12px;font-size:14px;font-weight:600;color:#fff;display:none;z-index:9999;pointer-events:none}
+    /* TOAST */
+    #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:12px 20px;border-radius:12px;font-size:14px;font-weight:600;color:#fff;display:none;z-index:9999;pointer-events:none;white-space:nowrap}
     #toast.success{background:rgba(52,199,89,.9);border:1px solid rgba(52,199,89,.4)}
     #toast.error{background:rgba(255,59,48,.9);border:1px solid rgba(255,59,48,.4)}
 
-    /* Confirm modal */
+    /* MODAL */
     .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:500;padding:24px}
     .modal-bg.open{display:flex}
     .modal{background:#13131F;border:1px solid var(--border);border-radius:20px;padding:32px;max-width:360px;width:100%;text-align:center}
@@ -100,17 +117,19 @@
     .modal-cancel{flex:1;padding:12px;border-radius:11px;background:rgba(255,255,255,.07);border:1px solid var(--border);color:var(--text);font-size:14px;font-weight:700;font-family:inherit;cursor:pointer}
     .modal-confirm{flex:1;padding:12px;border-radius:11px;background:var(--danger);border:none;color:#fff;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer}
 
-    @media(max-width:600px){
+    @media(max-width:640px){
       .admin-main{padding:20px 16px}
       .stats-row{flex-direction:column}
       th,td{padding:10px 12px}
-      .col-comment{max-width:160px}
+      .col-comment{max-width:140px}
+      .tabs{width:100%}
+      .tab-btn{flex:1;justify-content:center}
     }
   </style>
 </head>
 <body>
 
-<!-- ── LOGIN ── -->
+<!-- LOGIN -->
 <div id="loginWrap">
   <div class="login-card">
     <div class="login-logo">
@@ -129,7 +148,7 @@
   </div>
 </div>
 
-<!-- ── ADMIN PANEL ── -->
+<!-- ADMIN PANEL -->
 <div id="adminWrap">
   <header class="admin-header">
     <div class="admin-header-logo">
@@ -144,74 +163,94 @@
   </header>
 
   <div class="admin-main">
-    <!-- Stats -->
-    <div class="stats-row">
-      <div class="stat-card">
-        <div class="stat-card-num" id="stTotal" style="color:#fff">—</div>
-        <div class="stat-card-lbl">Total Ulasan</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-num" id="stAvg" style="color:#FF9500">—</div>
-        <div class="stat-card-lbl">Rata-rata Bintang</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-num" id="stFive" style="color:#34C759">—</div>
-        <div class="stat-card-lbl">Bintang 5 ⭐</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-num" id="stOne" style="color:#FF3B30">—</div>
-        <div class="stat-card-lbl">Bintang 1 ★</div>
-      </div>
-    </div>
-
-    <!-- Toolbar -->
-    <div class="toolbar">
-      <input class="search-input" id="searchInput" placeholder="🔍  Cari nama, email, atau komentar...">
-      <select class="filter-select" id="filterRating">
-        <option value="">Semua Rating</option>
-        <option value="5">⭐⭐⭐⭐⭐ 5</option>
-        <option value="4">⭐⭐⭐⭐ 4</option>
-        <option value="3">⭐⭐⭐ 3</option>
-        <option value="2">⭐⭐ 2</option>
-        <option value="1">⭐ 1</option>
-      </select>
-      <button class="refresh-btn" id="refreshBtn">
-        <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-        Refresh
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="reviews">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Ulasan
+      </button>
+      <button class="tab-btn" data-tab="downloads">
+        <svg viewBox="0 0 24 24"><path d="M12 3v13M6 11l6 6 6-6M4 19h16"/></svg>
+        Download History
       </button>
     </div>
 
-    <!-- Table -->
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nama</th>
-            <th>Email</th>
-            <th>Rating</th>
-            <th>Platform</th>
-            <th>Komentar</th>
-            <th>Tanggal</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="reviewsBody">
-          <tr><td colspan="8"><div class="table-empty"><div class="spinner"></div>Memuat data...</div></td></tr>
-        </tbody>
-      </table>
+    <!-- TAB: REVIEWS -->
+    <div class="tab-pane active" id="pane-reviews">
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-card-num" id="stTotal" style="color:#fff">—</div><div class="stat-card-lbl">Total Ulasan</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="stAvg" style="color:#FF9500">—</div><div class="stat-card-lbl">Rata-rata Bintang</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="stFive" style="color:#34C759">—</div><div class="stat-card-lbl">Bintang 5 ⭐</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="stOne" style="color:#FF3B30">—</div><div class="stat-card-lbl">Bintang 1 ★</div></div>
+      </div>
+      <div class="toolbar">
+        <input class="search-input" id="reviewSearch" placeholder="🔍  Cari nama, email, atau komentar...">
+        <select class="filter-select" id="filterRating">
+          <option value="">Semua Rating</option>
+          <option value="5">⭐⭐⭐⭐⭐ 5</option>
+          <option value="4">⭐⭐⭐⭐ 4</option>
+          <option value="3">⭐⭐⭐ 3</option>
+          <option value="2">⭐⭐ 2</option>
+          <option value="1">⭐ 1</option>
+        </select>
+        <button class="refresh-btn" id="refreshReviews">
+          <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          Refresh
+        </button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Nama</th><th>Email</th><th>Rating</th><th>Platform</th><th>Komentar</th><th>Tanggal</th><th></th></tr></thead>
+          <tbody id="reviewsBody"><tr><td colspan="8"><div class="table-empty"><div class="spinner"></div>Memuat data...</div></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB: DOWNLOADS -->
+    <div class="tab-pane" id="pane-downloads">
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-card-num" id="dlTotal" style="color:#fff">—</div><div class="stat-card-lbl">Total Download</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="dlSuccess" style="color:#34C759">—</div><div class="stat-card-lbl">Berhasil</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="dlFail" style="color:#FF3B30">—</div><div class="stat-card-lbl">Gagal</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="dlRate" style="color:#FF9500">—</div><div class="stat-card-lbl">Tingkat Sukses</div></div>
+      </div>
+      <div id="platBarsWrap" style="display:none">
+        <div class="plat-bars">
+          <div class="plat-bars-title">Top Platform</div>
+          <div id="platBarsContent"></div>
+        </div>
+      </div>
+      <div class="toolbar">
+        <input class="search-input" id="dlSearch" placeholder="🔍  Cari platform atau domain...">
+        <select class="filter-select" id="dlFilterStatus">
+          <option value="">Semua Status</option>
+          <option value="ok">✅ Berhasil</option>
+          <option value="fail">❌ Gagal</option>
+        </select>
+        <select class="filter-select" id="dlFilterPlat">
+          <option value="">Semua Platform</option>
+        </select>
+        <button class="refresh-btn" id="refreshDl">
+          <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          Refresh
+        </button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Waktu</th><th>Platform</th><th>Domain</th><th>Status</th><th>Error</th><th></th></tr></thead>
+          <tbody id="dlBody"><tr><td colspan="7"><div class="table-empty">Pilih tab Download History untuk memuat data.</div></td></tr></tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Confirm modal -->
+<!-- MODAL -->
 <div class="modal-bg" id="modalBg">
   <div class="modal">
-    <div class="modal-icon">
-      <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
-    </div>
-    <div class="modal-title">Hapus Ulasan?</div>
-    <div class="modal-desc" id="modalDesc">Ulasan ini akan dihapus permanen dan tidak bisa dikembalikan.</div>
+    <div class="modal-icon"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></div>
+    <div class="modal-title">Hapus Data?</div>
+    <div class="modal-desc" id="modalDesc">Data ini akan dihapus permanen.</div>
     <div class="modal-actions">
       <button class="modal-cancel" id="modalCancel">Batal</button>
       <button class="modal-confirm" id="modalConfirm">Hapus</button>
@@ -219,171 +258,248 @@
   </div>
 </div>
 
-<!-- Toast -->
 <div id="toast"></div>
 
 <script>
-  const $ = id => document.getElementById(id);
-  const STORAGE_KEY = 'nixdr_admin_key';
-  let allReviews = [];
-  let pendingDeleteId = null;
+const $ = id => document.getElementById(id);
+const STORAGE_KEY = 'nixdr_admin_key';
+let allReviews = [], allLogs = [];
+let pendingDelete = null; // { id, tab }
+let dlLoaded = false;
 
-  // ── Auth ──────────────────────────────────────────────────
-  const savedKey = sessionStorage.getItem(STORAGE_KEY);
-  if (savedKey) showAdmin(savedKey);
+// ── AUTH ────────────────────────────────────────────────────
+const savedKey = sessionStorage.getItem(STORAGE_KEY);
+if (savedKey) showAdmin(savedKey);
 
-  $('keyInput').addEventListener('keydown', e => { if (e.key === 'Enter') $('loginBtn').click(); });
-  $('loginBtn').addEventListener('click', async () => {
-    const key = $('keyInput').value.trim();
-    if (!key) return;
-    $('loginBtn').textContent = 'Memeriksa...';
-    $('loginBtn').disabled = true;
-    $('loginError').style.display = 'none';
-    try {
-      const r = await fetch('/api/admin', { headers: { 'X-Admin-Key': key } });
-      const j = await r.json();
-      if (j.success) {
-        sessionStorage.setItem(STORAGE_KEY, key);
-        showAdmin(key, j);
+$('keyInput').addEventListener('keydown', e => { if (e.key === 'Enter') $('loginBtn').click(); });
+$('loginBtn').addEventListener('click', async () => {
+  const key = $('keyInput').value.trim();
+  if (!key) return;
+  $('loginBtn').textContent = 'Memeriksa...';
+  $('loginBtn').disabled = true;
+  $('loginError').style.display = 'none';
+  try {
+    const r = await fetch('/api/admin', { headers: { 'X-Admin-Key': key } });
+    const j = await r.json();
+    if (j.success) { sessionStorage.setItem(STORAGE_KEY, key); showAdmin(key, j); }
+    else { $('loginError').style.display = 'block'; }
+  } catch {
+    $('loginError').textContent = '❌ Network error. Coba lagi.';
+    $('loginError').style.display = 'block';
+  }
+  $('loginBtn').textContent = 'Masuk';
+  $('loginBtn').disabled = false;
+});
+
+$('logoutBtn').addEventListener('click', () => {
+  sessionStorage.removeItem(STORAGE_KEY);
+  $('adminWrap').style.display = 'none';
+  $('loginWrap').style.display = 'flex';
+  $('keyInput').value = '';
+});
+
+function showAdmin(key, data) {
+  $('loginWrap').style.display = 'none';
+  $('adminWrap').style.display = 'flex';
+  if (data) renderReviews(data);
+  else loadReviews(key);
+}
+
+// ── TABS ─────────────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const tab = btn.dataset.tab;
+    $(`pane-${tab}`).classList.add('active');
+    if (tab === 'downloads' && !dlLoaded) loadDownloads();
+  });
+});
+
+// ── REVIEWS ──────────────────────────────────────────────────
+async function loadReviews(key) {
+  key = key || sessionStorage.getItem(STORAGE_KEY);
+  $('reviewsBody').innerHTML = '<tr><td colspan="8"><div class="table-empty"><div class="spinner"></div>Memuat ulasan...</div></td></tr>';
+  try {
+    const r = await fetch('/api/admin', { headers: { 'X-Admin-Key': key } });
+    const j = await r.json();
+    if (!j.success) { sessionStorage.removeItem(STORAGE_KEY); location.reload(); return; }
+    renderReviews(j);
+  } catch { showToast('Gagal memuat ulasan', 'error'); }
+}
+
+function renderReviews(data) {
+  allReviews = data.reviews || [];
+  $('stTotal').textContent = data.totalCount || 0;
+  $('stAvg').textContent   = (data.avgRating || 0) + ' ⭐';
+  $('stFive').textContent  = (data.distribution||[]).find(d=>d.star===5)?.count || 0;
+  $('stOne').textContent   = (data.distribution||[]).find(d=>d.star===1)?.count || 0;
+  applyReviewFilters();
+}
+
+$('reviewSearch').addEventListener('input', applyReviewFilters);
+$('filterRating').addEventListener('change', applyReviewFilters);
+$('refreshReviews').addEventListener('click', () => loadReviews());
+
+function applyReviewFilters() {
+  const q   = $('reviewSearch').value.toLowerCase();
+  const rat = $('filterRating').value;
+  const f   = allReviews.filter(r =>
+    (!q || (r.name+r.email+r.comment+r.platform).toLowerCase().includes(q)) &&
+    (!rat || String(r.rating) === rat)
+  );
+  if (!f.length) { $('reviewsBody').innerHTML = '<tr><td colspan="8"><div class="table-empty">Tidak ada ulasan ditemukan.</div></td></tr>'; return; }
+  $('reviewsBody').innerHTML = f.map(r => {
+    const stars  = '⭐'.repeat(r.rating) + `<span style="color:rgba(255,255,255,.3);font-size:11px"> ${r.rating}/5</span>`;
+    const date   = fmt(r.createdAt);
+    const email  = r.email ? `<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>` : '<span style="color:rgba(255,255,255,.2)">—</span>';
+    return `<tr>
+      <td class="col-id">#${r.id}</td>
+      <td class="col-name">${esc(r.name)}</td>
+      <td class="col-email">${email}</td>
+      <td>${stars}</td>
+      <td><span class="badge badge-plat">${esc(r.platform)}</span></td>
+      <td class="col-comment">${esc(r.comment).replace(/\n/g,'<br>')}</td>
+      <td class="col-date">${date}</td>
+      <td><button class="del-btn" data-id="${r.id}" data-tab="reviews" title="Hapus"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button></td>
+    </tr>`;
+  }).join('');
+  attachDelBtns($('reviewsBody'));
+}
+
+// ── DOWNLOADS ────────────────────────────────────────────────
+async function loadDownloads() {
+  const key = sessionStorage.getItem(STORAGE_KEY);
+  $('dlBody').innerHTML = '<tr><td colspan="7"><div class="table-empty"><div class="spinner"></div>Memuat riwayat download...</div></td></tr>';
+  try {
+    const r = await fetch('/api/admin?tab=downloads', { headers: { 'X-Admin-Key': key } });
+    const j = await r.json();
+    if (!j.success) { showToast('Gagal memuat download history', 'error'); return; }
+    renderDownloads(j);
+    dlLoaded = true;
+  } catch { showToast('Gagal memuat download history', 'error'); }
+}
+
+function renderDownloads(data) {
+  allLogs = data.logs || [];
+  $('dlTotal').textContent   = data.totalCount || 0;
+  $('dlSuccess').textContent = data.successCount || 0;
+  $('dlFail').textContent    = (data.totalCount||0) - (data.successCount||0);
+  $('dlRate').textContent    = (data.successRate || 0) + '%';
+
+  // Platform bars
+  if (data.topPlatforms && data.topPlatforms.length) {
+    const max = data.topPlatforms[0].count;
+    $('platBarsContent').innerHTML = data.topPlatforms.map(p => `
+      <div class="plat-bar-row">
+        <span class="plat-bar-name">${p.platform}</span>
+        <div class="plat-bar-track"><div class="plat-bar-fill" style="width:${Math.round(p.count/max*100)}%"></div></div>
+        <span class="plat-bar-count">${p.count}</span>
+      </div>`).join('');
+    $('platBarsWrap').style.display = 'block';
+
+    // Populate platform filter
+    const sel = $('dlFilterPlat');
+    sel.innerHTML = '<option value="">Semua Platform</option>';
+    data.topPlatforms.forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p.platform; opt.textContent = p.platform;
+      sel.appendChild(opt);
+    });
+  }
+  applyDlFilters();
+}
+
+$('dlSearch').addEventListener('input', applyDlFilters);
+$('dlFilterStatus').addEventListener('change', applyDlFilters);
+$('dlFilterPlat').addEventListener('change', applyDlFilters);
+$('refreshDl').addEventListener('click', () => { dlLoaded = false; loadDownloads(); });
+
+function applyDlFilters() {
+  const q    = $('dlSearch').value.toLowerCase();
+  const st   = $('dlFilterStatus').value;
+  const plat = $('dlFilterPlat').value;
+  const f = allLogs.filter(l =>
+    (!q || (l.platform+l.urlHost+(l.error||'')).toLowerCase().includes(q)) &&
+    (!st   || (st === 'ok' ? l.success : !l.success)) &&
+    (!plat || l.platform === plat)
+  );
+  if (!f.length) { $('dlBody').innerHTML = '<tr><td colspan="7"><div class="table-empty">Tidak ada data ditemukan.</div></td></tr>'; return; }
+  $('dlBody').innerHTML = f.map(l => {
+    const statusBadge = l.success
+      ? '<span class="badge badge-ok">✅ Berhasil</span>'
+      : '<span class="badge badge-fail">❌ Gagal</span>';
+    return `<tr>
+      <td class="col-id">#${l.id}</td>
+      <td class="col-date">${fmt(l.timestamp)}</td>
+      <td><span class="badge badge-plat">${esc(l.platform)}</span></td>
+      <td class="col-host">${esc(l.urlHost||'—')}</td>
+      <td>${statusBadge}</td>
+      <td class="col-host" style="color:rgba(255,80,80,.7)">${esc(l.error||'—')}</td>
+      <td><button class="del-btn" data-id="${l.id}" data-tab="downloads" title="Hapus log"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button></td>
+    </tr>`;
+  }).join('');
+  attachDelBtns($('dlBody'));
+}
+
+// ── DELETE ────────────────────────────────────────────────────
+function attachDelBtns(tbody) {
+  tbody.querySelectorAll('.del-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id  = Number(btn.dataset.id);
+      const tab = btn.dataset.tab;
+      pendingDelete = { id, tab };
+      let desc = 'Data ini akan dihapus permanen.';
+      if (tab === 'reviews') {
+        const rv = allReviews.find(r => r.id === id);
+        if (rv) desc = `Hapus ulasan dari "${rv.name}" (${rv.rating}⭐)? Tindakan ini permanen.`;
       } else {
-        $('loginError').style.display = 'block';
+        const lg = allLogs.find(l => l.id === id);
+        if (lg) desc = `Hapus log download #${lg.id} (${lg.platform}, ${fmt(lg.timestamp)})?`;
       }
-    } catch {
-      $('loginError').textContent = '❌ Network error. Coba lagi.';
-      $('loginError').style.display = 'block';
-    }
-    $('loginBtn').textContent = 'Masuk';
-    $('loginBtn').disabled = false;
-  });
-
-  $('logoutBtn').addEventListener('click', () => {
-    sessionStorage.removeItem(STORAGE_KEY);
-    $('adminWrap').style.display = 'none';
-    $('loginWrap').style.display = 'flex';
-    $('keyInput').value = '';
-  });
-
-  function showAdmin(key, data) {
-    $('loginWrap').style.display = 'none';
-    $('adminWrap').style.display = 'flex';
-    if (data) renderData(data);
-    else loadReviews(key);
-  }
-
-  // ── Load reviews ─────────────────────────────────────────
-  async function loadReviews(key) {
-    key = key || sessionStorage.getItem(STORAGE_KEY);
-    $('reviewsBody').innerHTML = '<tr><td colspan="8"><div class="table-empty"><div class="spinner"></div>Memuat ulasan...</div></td></tr>';
-    try {
-      const r = await fetch('/api/admin', { headers: { 'X-Admin-Key': key } });
-      const j = await r.json();
-      if (!j.success) { sessionStorage.removeItem(STORAGE_KEY); location.reload(); return; }
-      renderData(j);
-    } catch { showToast('Gagal memuat data', 'error'); }
-  }
-
-  function renderData(data) {
-    allReviews = data.reviews || [];
-    updateStats(data);
-    applyFilters();
-  }
-
-  function updateStats(data) {
-    $('stTotal').textContent = data.totalCount || 0;
-    $('stAvg').textContent   = (data.avgRating || 0) + ' ⭐';
-    $('stFive').textContent  = (data.distribution || []).find(d=>d.star===5)?.count || 0;
-    $('stOne').textContent   = (data.distribution || []).find(d=>d.star===1)?.count || 0;
-  }
-
-  // ── Filters ───────────────────────────────────────────────
-  $('searchInput').addEventListener('input', applyFilters);
-  $('filterRating').addEventListener('change', applyFilters);
-  $('refreshBtn').addEventListener('click', () => loadReviews());
-
-  function applyFilters() {
-    const q   = $('searchInput').value.toLowerCase();
-    const rat = $('filterRating').value;
-    const filtered = allReviews.filter(r => {
-      const matchQ   = !q || (r.name+r.email+r.comment+r.platform).toLowerCase().includes(q);
-      const matchRat = !rat || String(r.rating) === rat;
-      return matchQ && matchRat;
+      $('modalDesc').textContent = desc;
+      $('modalBg').classList.add('open');
     });
-    renderTable(filtered);
-  }
-
-  function renderTable(reviews) {
-    if (!reviews.length) {
-      $('reviewsBody').innerHTML = '<tr><td colspan="8"><div class="table-empty">Tidak ada ulasan ditemukan.</div></td></tr>';
-      return;
-    }
-    const rows = reviews.map(r => {
-      const stars = '⭐'.repeat(r.rating) + `<span style="color:rgba(255,255,255,.3);font-size:11px"> ${r.rating}/5</span>`;
-      const date  = new Date(r.createdAt).toLocaleString('id-ID', {day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Jakarta'});
-      const comment = esc(r.comment).replace(/\n/g,'<br>');
-      return `<tr>
-        <td class="col-id">#${r.id}</td>
-        <td class="col-name">${esc(r.name)}</td>
-        <td class="col-email"><a href="mailto:${esc(r.email)}">${esc(r.email||'—')}</a></td>
-        <td class="col-rating">${stars}</td>
-        <td class="col-platform"><span class="plat-badge">${esc(r.platform)}</span></td>
-        <td class="col-comment">${comment}</td>
-        <td class="col-date">${date}</td>
-        <td><button class="del-btn" data-id="${r.id}" title="Hapus ulasan ini">
-          <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
-        </button></td>
-      </tr>`;
-    }).join('');
-    $('reviewsBody').innerHTML = rows;
-    $('reviewsBody').querySelectorAll('.del-btn').forEach(btn => {
-      btn.addEventListener('click', () => confirmDelete(Number(btn.dataset.id), btn));
-    });
-  }
-
-  // ── Delete ────────────────────────────────────────────────
-  function confirmDelete(id, btn) {
-    const review = allReviews.find(r => r.id === id);
-    pendingDeleteId = id;
-    $('modalDesc').textContent = review
-      ? `Hapus ulasan dari "${review.name}" (${review.rating}⭐)? Tindakan ini permanen.`
-      : 'Ulasan ini akan dihapus permanen.';
-    $('modalBg').classList.add('open');
-  }
-
-  $('modalCancel').addEventListener('click', () => { $('modalBg').classList.remove('open'); pendingDeleteId = null; });
-  $('modalBg').addEventListener('click', e => { if (e.target === $('modalBg')) { $('modalBg').classList.remove('open'); pendingDeleteId = null; } });
-
-  $('modalConfirm').addEventListener('click', async () => {
-    if (pendingDeleteId === null) return;
-    const id = pendingDeleteId;
-    $('modalBg').classList.remove('open');
-    $('modalConfirm').textContent = 'Menghapus...';
-    const key = sessionStorage.getItem(STORAGE_KEY);
-    try {
-      const r = await fetch(`/api/admin?id=${id}`, { method: 'DELETE', headers: { 'X-Admin-Key': key } });
-      const j = await r.json();
-      if (j.success) {
-        allReviews = allReviews.filter(rv => rv.id !== id);
-        applyFilters();
-        showToast('Ulasan berhasil dihapus ✅', 'success');
-      } else { showToast(j.error || 'Gagal menghapus', 'error'); }
-    } catch { showToast('Network error', 'error'); }
-    $('modalConfirm').textContent = 'Hapus';
-    pendingDeleteId = null;
   });
+}
 
-  // ── Helpers ───────────────────────────────────────────────
-  function esc(s) {
-    if (!s) return '';
-    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
+$('modalCancel').addEventListener('click', () => { $('modalBg').classList.remove('open'); pendingDelete = null; });
+$('modalBg').addEventListener('click', e => { if (e.target === $('modalBg')) { $('modalBg').classList.remove('open'); pendingDelete = null; } });
 
-  function showToast(msg, type='success') {
-    const t = $('toast');
-    t.textContent = msg;
-    t.className = type;
-    t.style.display = 'block';
-    setTimeout(() => { t.style.display = 'none'; }, 3000);
-  }
+$('modalConfirm').addEventListener('click', async () => {
+  if (!pendingDelete) return;
+  const { id, tab } = pendingDelete;
+  $('modalBg').classList.remove('open');
+  const key = sessionStorage.getItem(STORAGE_KEY);
+  const url = `/api/admin?id=${id}${tab === 'downloads' ? '&tab=downloads' : ''}`;
+  try {
+    const r = await fetch(url, { method: 'DELETE', headers: { 'X-Admin-Key': key } });
+    const j = await r.json();
+    if (j.success) {
+      if (tab === 'reviews') { allReviews = allReviews.filter(rv => rv.id !== id); applyReviewFilters(); }
+      else { allLogs = allLogs.filter(l => l.id !== id); applyDlFilters(); }
+      showToast('Data berhasil dihapus ✅', 'success');
+    } else { showToast(j.error || 'Gagal menghapus', 'error'); }
+  } catch { showToast('Network error', 'error'); }
+  pendingDelete = null;
+});
+
+// ── HELPERS ───────────────────────────────────────────────────
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function fmt(ts) {
+  try { return new Date(ts).toLocaleString('id-ID',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Jakarta'}); }
+  catch { return ts; }
+}
+function showToast(msg, type='success') {
+  const t = $('toast');
+  t.textContent = msg;
+  t.className = type;
+  t.style.display = 'block';
+  setTimeout(() => { t.style.display = 'none'; }, 3000);
+}
 </script>
 </body>
 </html>
