@@ -47,5 +47,14 @@
     "comment": "Test simpan permanen & notif email!",
     "platform": "Instagram",
     "createdAt": "2026-07-07T03:08:41.333Z"
+  },
+  {
+    "id": 7,
+    "name": "CEO nix",
+    "email": "kelaoffc@gmail.com",
+    "rating": 5,
+    "comment": "Jangan lupa di pakai bos",
+    "platform": "Instagram",
+    "createdAt": "2026-07-07T03:22:36.789Z"
   }
 ]
