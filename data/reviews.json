@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Andi Pratama",
+    "rating": 5,
+    "comment": "Keren banget! Download TikTok tanpa watermark langsung jadi, nggak perlu app lain.",
+    "platform": "TikTok",
+    "createdAt": "2025-07-04T08:00:00Z"
+  },
+  {
+    "id": 2,
+    "name": "Siti Rahayu",
+    "rating": 5,
+    "comment": "Gampang banget makenya, tinggal paste link langsung download. Udah coba buat Instagram sama YouTube, both work perfectly!",
+    "platform": "Instagram",
+    "createdAt": "2025-07-04T10:30:00Z"
+  },
+  {
+    "id": 3,
+    "name": "Budi Santoso",
+    "rating": 4,
+    "comment": "Mantap! Support banyak platform. Satu-satunya saran tambahin progress bar waktu download.",
+    "platform": "YouTube",
+    "createdAt": "2025-07-05T09:15:00Z"
+  },
+  {
+    "id": 4,
+    "name": "Dewi Lestari",
+    "rating": 5,
+    "comment": "Literally yang terbaik. Udah cobain banyak downloader lain, ini yang paling cepet dan bersih.",
+    "platform": "Facebook",
+    "createdAt": "2025-07-05T14:00:00Z"
+  },
+  {
+    "id": 5,
+    "name": "Fajar Nugroho",
+    "rating": 5,
+    "comment": "Download Spotify juga bisa? Gila! Ini tool lengkap banget. Recommended 100%.",
+    "platform": "Spotify",
+    "createdAt": "2025-07-06T07:45:00Z"
+  }
+]
