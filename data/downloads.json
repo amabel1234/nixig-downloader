@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": 1,
+    "timestamp": "2026-07-09T05:23:57.469Z",
+    "platform": "youtube",
+    "urlHost": "youtube.com",
+    "success": false,
+    "error": "This operation was aborted"
+  }
+]
