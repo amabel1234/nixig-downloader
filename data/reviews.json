@@ -48,5 +48,14 @@
     "comment": "Jangan lupa di pakai bos",
     "platform": "Instagram",
     "createdAt": "2026-07-07T03:22:36.789Z"
+  },
+  {
+    "id": 8,
+    "name": "wisnu",
+    "email": "ganteng@gmail.com",
+    "rating": 5,
+    "comment": "bagus kali ges",
+    "platform": "Instagram",
+    "createdAt": "2026-07-09T15:46:56.169Z"
   }
 ]
