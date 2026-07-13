@@ -6,5 +6,13 @@
     "urlHost": "youtube.com",
     "success": false,
     "error": "This operation was aborted"
+  },
+  {
+    "id": 2,
+    "timestamp": "2026-07-13T06:39:50.270Z",
+    "platform": "youtube",
+    "urlHost": "youtube.com",
+    "success": false,
+    "error": "Upstream 402"
   }
 ]
