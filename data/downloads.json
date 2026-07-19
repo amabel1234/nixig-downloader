@@ -22,5 +22,13 @@
     "urlHost": "youtube.com",
     "success": false,
     "error": "Upstream 429"
+  },
+  {
+    "id": 4,
+    "timestamp": "2026-07-19T07:32:32.712Z",
+    "platform": "youtube",
+    "urlHost": "youtube.com",
+    "success": false,
+    "error": "Upstream 429"
   }
 ]
