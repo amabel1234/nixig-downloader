@@ -1,13 +1,5 @@
 [
   {
-    "id": 2,
-    "timestamp": "2026-07-13T06:39:50.270Z",
-    "platform": "youtube",
-    "urlHost": "youtube.com",
-    "success": false,
-    "error": "Upstream 402"
-  },
-  {
     "id": 3,
     "timestamp": "2026-07-19T07:32:30.838Z",
     "platform": "youtube",
